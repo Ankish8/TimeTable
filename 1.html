@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <title>Timetable App</title>
+</head>
+
+<body>
+
+  <div class="container mt-5">
+  <h1 class="text-center mb-4">TIME TABLE - Jul-Dec 2023</h1>
+
+  <!-- Batch Selection Dropdown -->
+<div class="mb-4">
+  <label for="batchSelect" class="form-label">Select Batch:</label>
+  <select class="form-control" id="batchSelect">
+    <option>Bachelor of Design UX V</option>
+    <option>Bachelor of Design UX VII</option>
+    <!-- Add more batches as needed -->
+  </select>
+</div>
+
+
+<!-- Week Tabs -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#week1" data-toggle="tab">Week 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#week2" data-toggle="tab">Week 2</a>
+    </li>
+    <!-- Add more weeks as needed -->
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <!-- Week 1 Tab -->
+    <div class="tab-pane active" id="week1">
+      <h3 class="mt-3">Week 1: Oct 02, 2023 - Oct 06, 2023</h3>
+      <!-- Week 1 Table Here -->
+      <!-- Implement Week 1 Table -->
+    </div>
+    <!-- End Week 1 Tab -->
+    <!-- Week 2 Tab -->
+    <div class="tab-pane" id="week2">
+      <h3 class="mt-3">Week 2: Oct 09, 2023 - Oct 13, 2023</h3>
+      <!-- Week 2 Table Here -->
+      <!-- Implement Week 2 Table -->
+    </div>
+    <!-- End Week 2 Tab -->
+    <!-- Add similar blocks for other weeks -->
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Day/Time</th>
+          <th scope="col">9:45-10:35</th>
+          <th scope="col">10:35-11:25</th>
+          <th scope="col">11:25-12:15</th>
+          <th scope="col">12:15-1:05</th>
+          <th scope="col"></th>
+          <th scope="col">1:35-2:25</th>
+          <th scope="col">2:25-3:15</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Repeat this block for each day -->
+        <tr>
+          <th scope="row">Monday</th>
+          <!-- Repeat this block for each time slot -->
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <!-- End time slot block -->
+          <!-- Insert Break Cell for Monday Only -->
+          <td rowspan="5" class="text-center text-secondary align-middle" style="writing-mode: vertical-rl; transform: rotate(90deg);">Break</td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+        </tr>
+        <tr>
+          <th scope="row">Tuesday</th>
+          <!-- Repeat this block for each time slot -->
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <!-- End time slot block -->
+          <!-- Insert Break Cell for Monday Only -->
+          
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Wednesday</th>
+          <!-- Repeat this block for each time slot -->
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <!-- End time slot block -->
+          <!-- Insert Break Cell for Monday Only -->
+          
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Thursday</th>
+          <!-- Repeat this block for each time slot -->
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <!-- End time slot block -->
+          <!-- Insert Break Cell for Monday Only -->
+          
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Friday</th>
+          <!-- Repeat this block for each time slot -->
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <!-- End time slot block -->
+          <!-- Insert Break Cell for Monday Only -->
+          
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+          <td><select class="custom-select subject-select" onchange="setSubject(this)">
+            <option value="" disabled selected>Subject</option>
+          </select></td>
+        </tr>
+
+        <!-- End day block -->
+        <!-- Add similar blocks for Tuesday to Friday -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const subjectData = {
+      'Technology in Experience Design Advance': 'Deepali Gour',
+      'Visual Design Tools Advance': 'Radhika',
+      'UX & Digitalization': 'Keerthana',
+      'Usability Testing': 'Ankish',
+      'Innovation Management': 'Bhawana Jain',
+      // You can add more subjects for each faculty as needed.
+    };
+
+window.onload = function () {
+    // Target only select elements with the class 'subject-select'
+    const selects = document.querySelectorAll('.subject-select');
+    for (const select of selects) {
+        for (const subject in subjectData) {
+            const option = document.createElement('option');
+            option.text = subject;
+            option.value = subject;
+            select.add(option);
+        }
+    }
+};
+
+    function setSubject(element) {
+      const selectedSubject = element.value;
+      element.parentNode.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br>' + selectedSubject;
+        
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>
