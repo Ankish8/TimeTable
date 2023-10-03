@@ -1,0 +1,17 @@
+.cell {
+    position: relative;
+}
+
+.edit-icon {
+    color: rgb(169, 169, 169);
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    
+}
+
+.hidden {
+    display: none;
+}
+
