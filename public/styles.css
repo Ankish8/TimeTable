@@ -3,6 +3,8 @@
 }
 
 .edit-icon {
+    display: none; /* Hide by default */
+
     color: rgb(169, 169, 169);
     cursor: pointer;
     position: absolute;
@@ -11,7 +13,14 @@
     
 }
 
-.hidden {
-    display: none;
+.editable-cell:hover .edit-icon {
+    display: inline-block; /* Show on hover over the cell */
 }
+
+
+.hidden {
+    display: none !important;
+  }
+  
+  
 

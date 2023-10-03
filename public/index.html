@@ -15,7 +15,7 @@
 
   <div class="container mt-5">
   <h1 class="text-center mb-4">TIME TABLE - Jul-Dec 2023</h1>
-  
+   
   <!-- Batch Selection Dropdown -->
 <div class="mb-4">
   <label for="batchSelect" class="form-label">Select Batch:</label>
@@ -81,189 +81,172 @@
         <tr>
           <th scope="row">Monday</th>
           <!-- Repeat this block for each time slot -->
-          <td style="position:relative;">
+          
+          <td class="editable-cell" style="position:relative;" id="Monday-9:45-10:35">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
-          </td>
           
           
-          
+
         
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Monday-10:35-11:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
-          </td>
 
-
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Monday-11:25-12:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
 
 
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Monday-12:15-1:05">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
           <!-- End time slot block -->
           <!-- Insert Break Cell for Monday Only -->
           <td rowspan="5" class="text-center text-secondary align-middle" style="writing-mode: vertical-rl; transform: rotate(180deg);">Break</td>
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Monday-1:35-2:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Monday-2:25-3:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
         </tr>
         <tr>
           <th scope="row">Tuesday</th>
           <!-- Repeat this block for each time slot -->
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Tuesday-9:45-10:35">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Tuesday-10:35-11:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Tuesday-11:25-12:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Tuesday-12:15-1:05">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
           <!-- End time slot block -->
           <!-- Insert Break Cell for Monday Only -->
           
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Tuesday-1:35-2:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Tuesday-2:25-3:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
-          </td>
-
-          
         </tr>
 
         <tr>
           <th scope="row">Wednesday</th>
           <!-- Repeat this block for each time slot -->
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Wednesday-9:45-10:35">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Wednesday-10:35-11:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Wednesday-11:25-12:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Wednesday-12:15-1:05">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
           <!-- End time slot block -->
           <!-- Insert Break Cell for Monday Only -->
           
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Wednesday-1:35-2:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Wednesday-2:25-3:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
         </tr>
@@ -271,61 +254,55 @@
         <tr>
           <th scope="row">Thursday</th>
           <!-- Repeat this block for each time slot -->
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Thursday-9:45-10:35">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Thursday-10:35-11:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Thursday-11:25-12:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Thursday-12:15-1:05">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
           <!-- End time slot block -->
           <!-- Insert Break Cell for Monday Only -->
           
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Thursday-1:35-2:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Thursday-2:25-3:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
         </tr>
@@ -333,61 +310,55 @@
         <tr>
           <th scope="row">Friday</th>
           <!-- Repeat this block for each time slot -->
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Friday-9:45-10:35">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Friday-10:35-11:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Friday-11:25-12:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Friday-12:15-1:05">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
           <!-- End time slot block -->
           <!-- Insert Break Cell for Monday Only -->
           
-          <td style="position:relative;">
+          <td class="editable-cell" style="position:relative;" id="Friday-1:35-2:25">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
-          <td style="position:relative;">
+        <td class="editable-cell" style="position:relative;" id="Friday-2:25-3:15">
             <select class="custom-select subject-select" onchange="setSubject(this)">
-              <option value="" disabled selected>Subject</option>
+                <option value="" disabled selected>Subject</option>
             </select>
-            <i class="fa-solid fa-pen-to-square edit-icon hidden" onclick="editSubject(this)"></i>
-
-          </td>
+            <i class="fa-solid fa-pen-to-square edit-icon hidden"></i>
+        </td>
 
           
         </tr>
@@ -427,49 +398,119 @@ window.onload = function () {
     .catch(error => {
       console.error('Error fetching the subjects:', error);
     });
+
+  // Listen for changes on the batch select dropdown
+  document.getElementById('batchSelect').addEventListener('change', function() {
+    // Fetch timetable data from the server for the selected week and batch
+    const selectedWeek = document.querySelector('.nav-link.active').innerText; // Assumes that the week is represented by the text inside the active nav link
+    const selectedBatch = this.value; // The value of the selected batch
+
+    fetch(`http://localhost:3000/api/timetable?week=${selectedWeek}&batch=${selectedBatch}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok', response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Call the function here with fetched data
+        populateTimetable(data);
+      })
+      .catch(error => {
+        console.error('Error fetching the timetable:', error);
+      });
+  });
 };
-function setSubject(element) {
-    const selectedSubject = element.value;
-    element.classList.add('hidden'); // hide the select element using class
-    const parentCell = element.parentNode;
-    const displayDiv = document.createElement('div');
-    displayDiv.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br>' + selectedSubject;
-    parentCell.appendChild(displayDiv); // show the subject and faculty name
-    
-    const editIcon = parentCell.querySelector('.edit-icon'); // Select the edit icon within the parent cell
-    if(editIcon) {
-        editIcon.classList.remove('hidden'); // Show the edit icon by removing 'hidden' class
-    } else {
-        console.error('Edit icon not found in cell:', parentCell);
-    }
+
+
+function populateTimetable(data) {
+  if (!data || !data.days) return;
+  data.days.forEach(dayData => {
+    if (!dayData.day || !dayData.slots) return;
+    dayData.slots.forEach(slot => {
+      if (!slot.time || !slot.subject) return;
+      const cell = document.querySelector(`#${dayData.day}-${slot.time}`);
+      if (cell) {
+        // Modify this part to adjust how data is displayed in the cell
+        cell.textContent = slot.subject;
+        // If you have a dropdown in the cell and you want to set it to the saved value, you might do something like this:
+        const select = cell.querySelector('select');
+        if (select) {
+          select.value = slot.subject;
+          // You might need additional logic here to hide the select and display the selected value, based on your UI design
+        }
+      }
+    });
+  });
 }
+
+
+
+document.body.addEventListener('click', function(e) {
+    console.log('Clicked element:', e.target);
+    console.log('Closest .edit-icon:', e.target.closest('.edit-icon'));
+    if(e.target.closest('.edit-icon')) {
+        e.stopPropagation();
+        editSubject(e.target.closest('.edit-icon'));
+    }
+});
+
+
+function setSubject(element) {
+  const selectedSubject = element.value;
+  element.style.display = 'none'; 
+  const parentCell = element.parentNode;
+  const displayDiv = document.createElement('div');
+  displayDiv.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br>' + selectedSubject;
+  parentCell.appendChild(displayDiv); 
+  parentCell.classList.add('subject-selected');
+  const editIcon = parentCell.querySelector('.edit-icon'); 
+  editIcon.classList.remove('hidden'); 
+  parentCell.classList.add('editable'); // Add this line
+  saveSubject('someCellId', selectedSubject);
+}
+
 
 function editSubject(element) {
-    const parentCell = element.parentNode;
-    const selectElement = parentCell.querySelector('select');
-    const displayDiv = parentCell.querySelector('div'); // if you used a div to display the selected subject
-    element.classList.add('hidden'); // hide the edit icon by adding 'hidden' class
-    if (displayDiv) displayDiv.remove(); // remove the displayed subject
-    if (selectElement) {
-        selectElement.classList.remove('hidden'); // show the select element again by removing 'hidden' class
-        selectElement.value = ""; // Reset the value of select to the default state
-    } else {
-        console.error('Select element not found in cell:', parentCell);
-    }
+  const parentCell = element.parentNode;
+  const selectElement = parentCell.querySelector('select');
+  const displayDiv = parentCell.querySelector('div');
+
+  // First, check if the elements are selected correctly
+  if (!selectElement || !displayDiv) {
+    console.error('Select element or display div not found in cell:', parentCell);
+    return;
+  }
+
+  element.classList.add('hidden'); // Hide the edit icon
+  displayDiv.remove(); // Remove the displayed subject
+  selectElement.style.display = 'inline-block'; // Show the select element again
+  selectElement.value = ""; // Reset the value of the select to the default state
+}
+
+function saveSubject(cellID, selectedSubject) {
+  fetch('http://localhost:3000/update-slot', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      week: 'your_week',
+      batch: 'your_batch',
+      day: 'your_day',
+      time: 'your_time',
+      subject: selectedSubject,
+      faculty: 'your_faculty', // You need to provide the faculty as well
+    }),
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch((error) => console.error('Error:', error));
 }
 
 
 
 
-
-
-
-/* function setSubject(element) {
-  const selectedSubject = element.value;
-  const teacherName = subjectData[selectedSubject]; // Access the teacher name from stored subjectData
-  // Set cell content with teacher name bolded and subject name below
-  element.parentNode.innerHTML = `<strong>${teacherName}</strong><br>${selectedSubject}`;
-} */
 </script>
 
 
