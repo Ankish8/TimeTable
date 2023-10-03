@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/all.js"></script>
+  <link rel="stylesheet" href="styles.css">
+
   <title>Timetable App</title>
 </head>
 
@@ -12,7 +15,7 @@
 
   <div class="container mt-5">
   <h1 class="text-center mb-4">TIME TABLE - Jul-Dec 2023</h1>
-
+  
   <!-- Batch Selection Dropdown -->
 <div class="mb-4">
   <label for="batchSelect" class="form-label">Select Batch:</label>
@@ -78,9 +81,17 @@
         <tr>
           <th scope="row">Monday</th>
           <!-- Repeat this block for each time slot -->
-          <td><select class="custom-select subject-select" onchange="setSubject(this)">
-            <option value="" disabled selected>Subject</option>
-          </select></td>
+          <td style="position:relative;">
+            <select class="custom-select subject-select" onchange="setSubject(this)">
+              <option value="" disabled selected>Subject</option>
+            </select>
+            <i class="fa-solid fa-pen-to-square edit-icon" style="display:none; cursor:pointer; position:absolute; top4px; right: 8px;" onclick="editSubject(this)"></i>
+          </td>
+          
+          
+          
+        
+          
           <td><select class="custom-select subject-select" onchange="setSubject(this)">
             <option value="" disabled selected>Subject</option>
           </select></td>
@@ -243,10 +254,30 @@ window.onload = function () {
 
 function setSubject(element) {
   const selectedSubject = element.value;
+  element.style.display = 'none'; // hide the select element
+  const parentCell = element.parentNode;
+  const displayDiv = document.createElement('div');
+  displayDiv.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br>' + selectedSubject;
+  parentCell.appendChild(displayDiv); // show the subject and faculty name
+  const editIcon = element.parentNode.querySelector('.edit-icon');
+  editIcon.style.display = 'inline'; // or 'block'
+}
+function editSubject(element) {
+  const parentCell = element.parentNode;
+  const selectElement = parentCell.querySelector('select');
+  const displayDiv = parentCell.querySelector('div'); // if you used a div to display the selected subject
+  element.style.display = 'none'; // hide the edit icon
+  if (displayDiv) displayDiv.remove(); // remove the displayed subject
+  selectElement.style.display = 'inline'; // show the select element again
+}
+
+
+/* function setSubject(element) {
+  const selectedSubject = element.value;
   const teacherName = subjectData[selectedSubject]; // Access the teacher name from stored subjectData
   // Set cell content with teacher name bolded and subject name below
   element.parentNode.innerHTML = `<strong>${teacherName}</strong><br>${selectedSubject}`;
-}
+} */
 </script>
 
 

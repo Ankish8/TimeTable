@@ -11,13 +11,16 @@ const subjectData = {
   'Innovation Management': 'Bhawana Jain',
 };
 
+
 // Serve HTML file at root
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+   
 });
 
 // Or alternatively use express.static middleware for serving all static files in the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.get('/api/subjects', (req, res) => {
   res.json(subjectData);

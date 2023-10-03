@@ -9,5 +9,17 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankish8/timetable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ankish8/timetable/issues"
+  },
+  "homepage": "https://github.com/ankish8/timetable#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3"
+  }
 }

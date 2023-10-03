@@ -1,0 +1,9 @@
+.edit-icon {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    right: 8px;
+}
+
+/* Add any other styling you need for your application */
