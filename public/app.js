@@ -33,51 +33,67 @@ function compileTimetableData() {
 }
 
 function populateTimetable(data) {
-    if (!data || !data.days) return;
-  
-    data.days.forEach(dayData => {
-      if (!dayData.day || !dayData.slots) return;
-  
-      dayData.slots.forEach(slot => {
-        // Validate slot data
-        if (!slot.time || typeof slot.time !== 'string') {
-          console.error('Invalid slot data (time):', slot);
-          return; // Skip this slot if time is not defined or not a string
+    // Clear existing data first, if needed
+    const allCells = document.querySelectorAll('.subject-selected');
+    allCells.forEach(cell => {
+        const selectElement = cell.querySelector('select');
+        const displayDiv = cell.querySelector('div');
+        const editIcon = cell.querySelector('.edit-icon');
+
+        if (selectElement && displayDiv && editIcon) {
+            editIcon.classList.add('hidden');
+            displayDiv.remove();
+            selectElement.style.display = 'inline-block';
+            selectElement.value = ""; // Reset the value of the select to the default state
+            cell.classList.remove('subject-selected');
         }
-  
-        // Handle empty subject
-        if (!slot.subject || slot.subject.trim() === '') {
-          console.warn('Empty subject:', slot);
-          // If the subject is empty, you might not want to proceed further
-          return;
-        }
-  
-        const cellId = `${dayData.day}-${slot.time}`;
-        const cell = document.getElementById(cellId);
-        if (cell) {
-          const select = cell.querySelector('select');
-          if (select) {
-            select.value = slot.subject; // Assign value only if subject is not empty
-  
-            // hide the select box and display the subject and faculty in the required format
-            select.style.display = 'none';
-            const displayDiv = document.createElement('div');
-            displayDiv.innerHTML = '<strong>' + slot.faculty + '</strong><br>' + slot.subject;
-            cell.appendChild(displayDiv);
-            cell.classList.add('subject-selected');
-  
-            // If there is an edit icon, display it
-            const editIcon = cell.querySelector('.edit-icon');
-            if(editIcon){
-              editIcon.classList.remove('hidden');
-            }
-          }
-        } else {
-          console.error('Cell not found:', cellId);
-        }
-      });
     });
-  }
+
+    // Now populate with new data
+    if (!data || !data.days) return;
+
+    data.days.forEach(dayData => {
+        if (!dayData.day || !dayData.slots) return;
+
+        dayData.slots.forEach(slot => {
+            // Validate slot data
+            if (!slot.time || typeof slot.time !== 'string') {
+                console.error('Invalid slot data (time):', slot);
+                return;
+            }
+
+            // Handle empty subject
+            if (!slot.subject || slot.subject.trim() === '') {
+                console.warn('Empty subject:', slot);
+                return;
+            }
+
+            const cellId = `${dayData.day}-${slot.time}`;
+            const cell = document.getElementById(cellId);
+            if (cell) {
+                const select = cell.querySelector('select');
+                if (select) {
+                    select.value = slot.subject;
+
+                    // hide the select box and display the subject and faculty in the required format
+                    select.style.display = 'none';
+                    const displayDiv = document.createElement('div');
+                    displayDiv.innerHTML = '<strong>' + slot.faculty + '</strong><br>' + slot.subject;
+                    cell.appendChild(displayDiv);
+                    cell.classList.add('subject-selected');
+
+                    // If there is an edit icon, display it
+                    const editIcon = cell.querySelector('.edit-icon');
+                    if(editIcon){
+                        editIcon.classList.remove('hidden');
+                    }
+                }
+            } else {
+                console.error('Cell not found:', cellId);
+            }
+        });
+    });
+}
 
 
 function setSubject(element) {
@@ -274,7 +290,36 @@ document.getElementById('removeAllButton').addEventListener('click', removeAllSu
 
 // Listen for changes in week tabs
 
-/* document.querySelectorAll('.nav-link').forEach((tab) => {
+function getWeekDates(weekOffset, targetId) {
+  const today = new Date();
+  const currentDay = today.getDay();
+  const daysToMonday = currentDay === 0 ? -6 : 1 - currentDay;
+  const monday = new Date(today);
+  monday.setDate(monday.getDate() + daysToMonday + (7 * weekOffset));
+  const friday = new Date(monday);
+  friday.setDate(friday.getDate() + 4);
+
+  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  const weekInfo = `Week ${weekOffset + 1}: ${monday.toLocaleDateString('en-US', options)} - ${friday.toLocaleDateString('en-US', options)}`;
+  
+  document.getElementById('weekInfoText').innerText = weekInfo; // Set the week info text
+}
+
+// Initially set week dates for the first tab (Week 1)
+getWeekDates(0, 'week1');
+
+// Add event listeners to the tabs to update the week info when a tab is clicked
+document.getElementById('week1-tab').addEventListener('click', function() {
+  getWeekDates(0, 'week1');
+});
+
+document.getElementById('week2-tab').addEventListener('click', function() {
+  getWeekDates(1, 'week2');
+});
+
+
+
+document.querySelectorAll('.nav-link').forEach((tab) => {
     tab.addEventListener('click', function() {
       // Fetch timetable data for the selected week and batch
       const selectedWeek = this.innerText;
@@ -282,5 +327,24 @@ document.getElementById('removeAllButton').addEventListener('click', removeAllSu
   
       loadTimetableData(selectedWeek, selectedBatch); // function call to load timetable data
     });
-  }); */
+  }); 
+  
+
+
+  // Wait for the document to be fully loaded
+  document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+  
+    navLinks.forEach((navLink) => {
+      navLink.addEventListener('click', function(event) {
+        // Remove 'active' class from all tabs
+        navLinks.forEach((innerNavLink) => {
+          innerNavLink.classList.remove('active');
+        });
+  
+        // Add 'active' class to clicked tab
+        event.target.classList.add('active');
+      });
+    });
+  });
   

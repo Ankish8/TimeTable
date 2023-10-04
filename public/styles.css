@@ -1,106 +1,163 @@
-.cell {
-    position: relative;
+body, p {
+  font-family: ui-sans-serif, -apple-system, "system-ui", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  line-height: 16.8px;
+  text-align: start;
+  letter-spacing: normal;
+}
+.week-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  font-size: 24px;  /* Large font size */
+  font-weight: 700;  /* Bold and heavy */
 }
 
-.edit-icon {
-    display: none; /* Hide by default */
+.week-info i {
+  margin-right: 24px;  /* Increased space between icon and text */
+  font-size: 24px;  /* Icon size */
+}
 
-    color: rgb(169, 169, 169);
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    
+
+
+.flaticon-week-icon {
+  /* Add your Flaticon CSS here */
+  
+  margin-right: 8px;
+}
+/* General cell styling */
+.cell {
+  position: relative;
+  border: 1px solid #E1E5EB; /* Lighter border */
+  padding: 12px;
+  background-color: #FAFBFC; /* Light greyish background */
+  font-size: 14px; /* Smaller text */
+  color: #333333; /* Darker text */
+}
+
+/* Edit icon styles */
+.edit-icon {
+  display: none;
+  color: #B0BEC5; /* Light gray color */
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 .editable-cell:hover .edit-icon {
-    display: inline-block; /* Show on hover over the cell */
+  display: inline-block;
+}
+
+/* Hidden element class */
+.hidden {
+  display: none !important;
+}
+
+/* Previous CSS rules... */
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.custom-button {
+  padding: 8px 16px;
+  margin: 0 5px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: #c12d2d;
+  border: none;
+}
+
+.remove-button:hover {
+  text-decoration: underline;
+  color: #000000;
+  box-shadow: none;
 }
 
 
-.hidden {
-    display: none !important;
-  }
+.save-button {
+  background-color: #333;
+  color: #fff;
+}
 
-  .button-container {
-    text-align: right; /* Aligns buttons to the right */
-    margin-bottom: 20px; /* Adds some space below the button container */
-  }
-  
-  .custom-button {
-    padding: 10px 20px; /* Adds some padding inside the button */
-    margin: 0 5px; /* Adds some space around each button */
-    border: none; /* Removes border */
-    border-radius: 5px; /* Adds rounded corners */
-    cursor: pointer; /* Changes cursor to pointer on hover */
-    transition: background-color 0.3s; /* Smooth transition for background color change */
-  }
-  
-  .remove-button {
-    background-color: #d9534f; /* Red background color */
-    color: #fff; /* White text color */
-  }
-  
-  .save-button {
-    background-color: #0275d8; /* Blue background color */
-    color: #fff; /* White text color */
-  }
-  
-  /* Hover effect for buttons */
-  .custom-button:hover {
-    background-color: #5bc0de; /* Light blue background color on hover */
-  }
-  
-  .nav-container {
-    display: flex;
-    justify-content: space-between; /* or use "space-around" or "space-evenly" for different spacing */
-    align-items: center;
-    background-color: #E5F3FD; /* Adjust this to match your tab bar background color */
-    padding: 0.5rem 1rem; /* Adjust padding as needed */
-    border-bottom: 1px solid #dee2e6; /* Adjust border color as needed */
-  }
-  
-  .nav-tabs {
-    border-bottom: none; /* Removes the underline from the tab bar */
-  }
-  
-  /* Additional styling for nav-links if needed */
-  .nav-link {
-    border: none;
-    border-radius: 0;
-    color: hwb(210 29% 66%); /* Adjust text color as needed */
-  }
-  
-  .nav-link.active {
-    border: none;
-    border-bottom: 2px solid #007bff; /* Bottom border for active tab; adjust color as needed */
-    color: #007bff; /* Adjust active tab text color as needed */
-  }
-  
-  #toast-container {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 9999;
-  }
-  
-  .toast {
-    background-color: #333;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .toast.hide {
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .toast.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
+.custom-button:hover {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.remove-button:hover {
+  background-color: #d4d8de;
+}
+
+.save-button:hover {
+  background-color: #4a4a4a;
+}
+
+
+/* Navigation container */
+/* .nav-container {
+  border-bottom: 1px solid #E1E5EB;
+} */
+
+/* .custom-nav-tabs {
+  border-bottom: .5px solid rgb(155, 153, 153);
+} */
+
+.nav-item {
+  margin-bottom: -1px;
+}
+
+.nav-link {
+  border: none;
+  border-radius: 0;
+  color: #B0BEC5;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.nav-link.active {
+  color: #333333;
+  border-bottom: 2px solid #333333;
+}
+
+
+/* Toast styles */
+#toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
+
+.toast {
+  background-color: #333333;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toast.hide {
+  opacity: 0;
+  pointer-events: none; 
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
