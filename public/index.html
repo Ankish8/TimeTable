@@ -423,8 +423,10 @@ window.onload = function () {
 
 function populateTimetable(data) {
   if (!data || !data.days) return;
+
   data.days.forEach(dayData => {
     if (!dayData.day || !dayData.slots) return;
+
     dayData.slots.forEach(slot => {
       // Validate slot data
       if (!slot.time || typeof slot.time !== 'string') {
@@ -435,7 +437,8 @@ function populateTimetable(data) {
       // Handle empty subject
       if (!slot.subject || slot.subject.trim() === '') {
         console.warn('Empty subject:', slot);
-        return; // Skip this slot if subject is empty
+        // If the subject is empty, you might not want to proceed further
+        return;
       }
 
       const cellId = `${dayData.day}-${slot.time}`;
@@ -444,6 +447,19 @@ function populateTimetable(data) {
         const select = cell.querySelector('select');
         if (select) {
           select.value = slot.subject; // Assign value only if subject is not empty
+
+          // hide the select box and display the subject and faculty in the required format
+          select.style.display = 'none';
+          const displayDiv = document.createElement('div');
+          displayDiv.innerHTML = '<strong>' + slot.faculty + '</strong><br>' + slot.subject;
+          cell.appendChild(displayDiv);
+          cell.classList.add('subject-selected');
+
+          // If there is an edit icon, display it
+          const editIcon = cell.querySelector('.edit-icon');
+          if(editIcon){
+            editIcon.classList.remove('hidden');
+          }
         }
       } else {
         console.error('Cell not found:', cellId);
@@ -462,48 +478,44 @@ function populateTimetable(data) {
 
 
 
+
 document.getElementById('saveButton').addEventListener('click', function() {
     const compiledData = compileTimetableData();
     saveTimetableData(compiledData);
 });
 
 function compileTimetableData() {
-  const data = {
-    week: document.querySelector('.nav-link.active').innerText,
-    batch: document.getElementById('batchSelect').value,
-    days: []
-  };
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  days.forEach(day => {
-    const dayData = { day: day, slots: [] };
+    const data = {
+        week: document.querySelector('.nav-link.active').innerText,
+        batch: document.getElementById('batchSelect').value,
+        days: []
+    };
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    days.forEach(day => {
+        const dayData = { day: day, slots: [] };
+        const timeSlots = document.querySelectorAll(`td[id^=${day}-] .subject-select`);
+        timeSlots.forEach(slot => {
+          const time = slot.closest('td').id.split('-')[1] + '-' + slot.closest('td').id.split('-')[2];
+          const subjectName = slot.value;
 
-    const timeSlots = document.querySelectorAll(`td[id^=${day}-] .subject-select`);
+          // Handling Missing Faculty Names
+          if (subjectData[subjectName] === undefined) {
+              console.error('Faculty name not found for subject:', subjectName);
+              // You might want to return here or handle it in another way
+              // return; // Uncomment if you want to skip slots with missing faculty names
+          }
 
-    const timeLookup = {
-  '9:45': '9:45-10:35',
-  '10:35': '10:35-11:25',
-  '11:25': '11:25-12:15',
-  '12:15': '12:15-1:05',
-  '1:35': '1:35-2:25',
-  '2:25': '2:25-3:15'
-};
-
-timeSlots.forEach(slot => {
-  const idComponents = slot.closest('td').id.split('-');
-  const startTime = idComponents[1];
-  const time = timeLookup[startTime];
-  dayData.slots.push({
-    time: time,
-    subject: slot.value,
-    faculty: 'Faculty Name' // you need to provide a way to select faculty
-  });
-});
-
-
-    data.days.push(dayData);
-  });
-  return data;
+          dayData.slots.push({
+              time: time,
+              subject: subjectName,
+              faculty: subjectData[subjectName] || 'Not Available' // Default to 'Not Available' if faculty not found
+          });
+        });
+        data.days.push(dayData);
+    });
+    return data;
 }
+
 
 
 
@@ -520,6 +532,7 @@ document.body.addEventListener('click', function(e) {
 
 
 function setSubject(element) {
+  if (!(element instanceof HTMLElement)) element = this; // Allow for being called as an event handler
   const selectedSubject = element.value;
   element.style.display = 'none'; 
   const parentCell = element.parentNode;
