@@ -7,7 +7,7 @@ const SlotSchema = new Schema({
         required: true,
         trim: true
     },
-    subject: {
+    subject: { 
         type: String,
         trim: true
     },

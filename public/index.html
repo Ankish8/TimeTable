@@ -382,45 +382,87 @@ window.onload = function () {
       return response.json();
     })
     .then(data => {
-      // Store fetched data in subjectData variable
-      subjectData = data;
-      // Populate select elements
-      const selects = document.querySelectorAll('.subject-select');
-      for (const select of selects) {
-        for (const subject in data) {
-          const option = document.createElement('option');
-          option.text = subject;
-          option.value = subject;
-          select.add(option);
-        }
-      }
-    })
+  // Store fetched data in subjectData variable
+  subjectData = data;
+  // Populate select elements
+  const selects = document.querySelectorAll('.subject-select');
+  for (const select of selects) {
+    for (const subject in data) {
+      const option = document.createElement('option');
+      option.text = subject; // subject is the key in your data object
+      option.value = subject; // value can also be subject, adjust if you need a different value
+      select.add(option);
+    }
+  }
+  loadTimetableData(); // Call to load the initial timetable data
+})
+
     .catch(error => {
       console.error('Error fetching the subjects:', error);
     });
 
   // Listen for changes on the batch select dropdown
   document.getElementById('batchSelect').addEventListener('change', function() {
-    // Fetch timetable data from the server for the selected week and batch
-    const selectedWeek = document.querySelector('.nav-link.active').innerText; // Assumes that the week is represented by the text inside the active nav link
-    const selectedBatch = this.value; // The value of the selected batch
-
-    fetch(`http://localhost:3000/api/timetable?week=${selectedWeek}&batch=${selectedBatch}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok', response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Call the function here with fetched data
-        populateTimetable(data);
-      })
-      .catch(error => {
-        console.error('Error fetching the timetable:', error);
-      });
+    loadTimetableData();
   });
+
+  // Add event listeners to all subject-select elements
+  const subjectSelects = document.querySelectorAll('.subject-select');
+  for (const select of subjectSelects) {
+    select.addEventListener('change', function() {
+      const selectedSubject = this.value;
+      const selectedWeek = document.querySelector('.nav-link.active').innerText;
+      const selectedBatch = document.getElementById('batchSelect').value;
+
+      const cellIdParts = this.closest('td').id.split('-');
+      const selectedDay = cellIdParts[0]; // replace this line with your actual code
+      const selectedTime = cellIdParts[1] + '-' + cellIdParts[2]; // replace this line with your actual code
+
+      // Send selected subject and time slot to server
+      fetch('http://localhost:3000/api/update-slot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          week: selectedWeek,
+          batch: selectedBatch,
+          day: selectedDay,
+          time: selectedTime,
+          subject: selectedSubject,
+          // Include faculty if needed
+        }),
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch((error) => console.error('Error:', error));
+    });
+  }
 };
+
+function loadTimetableData() {
+  const selectedWeek = document.querySelector('.nav-link.active').innerText;
+  const selectedBatch = document.getElementById('batchSelect').value;
+
+  // Fetch timetable data from the server for the selected week and batch
+  fetch(`http://localhost:3000/api/timetable?week=${selectedWeek}&batch=${selectedBatch}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok', response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Call the function here with fetched data
+      populateTimetable(data);
+    })
+    .catch(error => {
+      console.error('Error fetching the timetable:', error);
+    });
+}
+
+
+
 
 
 function populateTimetable(data) {
@@ -428,9 +470,14 @@ function populateTimetable(data) {
   data.days.forEach(dayData => {
     if (!dayData.day || !dayData.slots) return;
     dayData.slots.forEach(slot => {
-      if (!slot.time || !slot.subject) return;
       const cell = document.querySelector(`#${dayData.day}-${slot.time}`);
       if (cell) {
+        if (!slot.subject) {
+          // Handle case when there is no subject for this slot
+          // E.g., clear the cell content or set to a default value
+          cell.textContent = ''; // or some default value
+          return;
+        }
         // Modify this part to adjust how data is displayed in the cell
         cell.textContent = slot.subject;
         // If you have a dropdown in the cell and you want to set it to the saved value, you might do something like this:
@@ -446,6 +493,7 @@ function populateTimetable(data) {
 
 
 
+
 document.body.addEventListener('click', function(e) {
     console.log('Clicked element:', e.target);
     console.log('Closest .edit-icon:', e.target.closest('.edit-icon'));
@@ -456,7 +504,7 @@ document.body.addEventListener('click', function(e) {
 });
 
 
-function setSubject(element) {
+/* function setSubject(element) {
   const selectedSubject = element.value;
   element.style.display = 'none'; 
   const parentCell = element.parentNode;
@@ -468,7 +516,52 @@ function setSubject(element) {
   editIcon.classList.remove('hidden'); 
   parentCell.classList.add('editable'); // Add this line
   saveSubject('someCellId', selectedSubject);
+} */
+
+
+function setSubject(element) {
+    const selectedSubject = element.value;
+    
+    // Assuming that your time slot and day information is stored in the id of the parent td element
+    // If this is not the case, adjust this part to get the correct time slot and day information
+    const parentCellId = element.closest('td').id;
+    const [day, startTime, endTime] = parentCellId.split('-');
+    
+    // Update UI
+    element.style.display = 'none'; 
+    const parentCell = element.parentNode;
+    const displayDiv = document.createElement('div');
+    displayDiv.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br>' + selectedSubject;
+    /* displayDiv.textContent = selectedSubject; // Set text content to selected subject */
+    parentCell.appendChild(displayDiv); 
+    // Add any other UI updates needed here
+
+    // Send selected subject, time slot, and day to server
+    fetch('http://localhost:3000/api/update-slot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            week: 'specified_week', // Replace with actual week value
+            batch: 'specified_batch', // Replace with actual batch value
+            day: day,
+            time: `${startTime}-${endTime}`,
+            subject: selectedSubject,
+            faculty: 'specified_faculty' // Replace with actual faculty value or remove if not needed
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Handle success - you might want to update the UI to reflect that the data was saved successfully
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        // Handle error - you might want to show an error message to the user
+    });
 }
+
 
 
 function editSubject(element) {
@@ -489,7 +582,7 @@ function editSubject(element) {
 }
 
 function saveSubject(cellID, selectedSubject) {
-  fetch('http://localhost:3000/update-slot', {
+  fetch('http://localhost:3000/api/update-slot', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

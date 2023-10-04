@@ -15,12 +15,25 @@ router.get('/timetable', async (req, res) => {
     } catch (error) {
         res.json({ error: 'Error fetching data' });
     }
-});
+}); 
 
 // Add new timetable data
-
-
 router.post('/timetable', async (req, res) => {
+  console.log('Request Body:', req.body); // Log the entire request body
+  try {
+      const timetable = new Timetable(req.body);
+      const savedTimetable = await timetable.save();
+      res.json({ success: 'Data added successfully', data: savedTimetable });
+  } catch (error) {
+      console.error('Error adding data:', error); // Log detailed error information
+      res.status(500).json({ error: 'Error adding data', errorMessage: error.message, errors: error.errors });
+  }
+});
+
+
+
+
+/* router.post('/timetable', async (req, res) => {
     try {
         const timetable = new Timetable(req.body);
         const savedTimetable = await timetable.save();
@@ -30,10 +43,12 @@ router.post('/timetable', async (req, res) => {
         console.error('Error adding data:', error); // Log error message
         res.json({ error: 'Error adding data' });
     }
-});
+}); */
 
 
 router.post('/update-slot', async (req, res) => {
+  console.log(req.body); // Log the received data here
+
     const { week, batch, day, time, subject, faculty } = req.body;
   
     try {
