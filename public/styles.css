@@ -4,6 +4,7 @@ body, p {
   line-height: 16.8px;
   text-align: start;
   letter-spacing: normal;
+  margin: 0 20% 0;
 }
 .week-info {
   display: flex;
@@ -161,3 +162,78 @@ body, p {
 
 
 
+/* General Table Styles */
+.table {
+  margin-left: auto;  /* Align with the start of Week tab */
+  margin-right: auto; /* Align with the end of Save button */
+  max-width: 100%;    /* Table will not grow larger than its container */
+  width: auto !important;        /* Table will shrink if the screen size is small */
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+.table thead th {
+  background: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+/* Body Styles */
+.table tbody th {
+  background: #ffffff;
+  padding: 10px;
+  text-align: left;
+}
+
+.table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Notion-Like Design Touches */
+.table tbody tr:hover {
+  background: #f3f4f6;
+}
+
+.editable-cell {
+  position: relative;
+}
+
+/* Select Styles */
+/* .custom-select {
+  width: 100%;
+  border: none;
+  background: #f3f4f6;
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: none;
+  appearance: none;
+} */
+
+/* Edit Icon */
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none; /* Initially Hidden */
+}
+
+/* Show edit icon when cell is hovered */
+.editable-cell:hover .edit-icon {
+  display: inline;
+}
+
+/* Break Cell */
+.text-center.text-secondary.align-middle {
+  background: #e0e0e0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
