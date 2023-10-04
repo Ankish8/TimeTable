@@ -55,7 +55,7 @@
     display: flex;
     justify-content: space-between; /* or use "space-around" or "space-evenly" for different spacing */
     align-items: center;
-    background-color: #f8f9fa; /* Adjust this to match your tab bar background color */
+    background-color: #E5F3FD; /* Adjust this to match your tab bar background color */
     padding: 0.5rem 1rem; /* Adjust padding as needed */
     border-bottom: 1px solid #dee2e6; /* Adjust border color as needed */
   }
@@ -75,5 +75,32 @@
     border: none;
     border-bottom: 2px solid #007bff; /* Bottom border for active tab; adjust color as needed */
     color: #007bff; /* Adjust active tab text color as needed */
+  }
+  
+  #toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+  }
+  
+  .toast {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .toast.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    pointer-events: auto;
   }
   

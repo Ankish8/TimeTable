@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="/all.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -386,82 +386,14 @@
     </table>
   </div>
 
- <script>
-let subjectData = {}; // This will hold the fetched subject data
-
-window.onload = function () {
-  // Fetch subject data from the server
-  fetch('http://localhost:3000/api/subjects')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Store fetched data in subjectData variable
-      subjectData = data;
-      // Populate select elements
-      const selects = document.querySelectorAll('.subject-select');
-      for (const select of selects) {
-        for (const subject in data) {
-          const option = document.createElement('option');
-          option.text = subject;
-          option.value = subject;
-          select.add(option);
-        }
-      }
-      
-      // After subjects have been loaded, load the timetable data
-      // Get the initial values for week and batch and pass to loadTimetableData function
-      const initialWeek = document.querySelector('.nav-link.active').innerText; // adjust if necessary
-      const initialBatch = document.getElementById('batchSelect').value; // adjust if necessary
-      loadTimetableData(initialWeek, initialBatch); // calling the function to load timetable data
-    })
-    .catch(error => {
-      console.error('Error fetching the subjects:', error);
-    });
-
-  // Listen for changes on the batch select dropdown
-  document.getElementById('batchSelect').addEventListener('change', function() {
-    // Fetch timetable data from the server for the selected week and batch
-    const selectedWeek = document.querySelector('.nav-link.active').innerText;
-    const selectedBatch = this.value;
-    
-    loadTimetableData(selectedWeek, selectedBatch); // replaced previous fetch with function call
-  });
-};
-
-
-
-
-
-document.getElementById('saveButton').addEventListener('click', function() {
-    const compiledData = compileTimetableData();
-    saveTimetableData(compiledData);
-});
-
-
-
-
-
-
-
-
-
-document.body.addEventListener('click', function(e) {
-    console.log('Clicked element:', e.target);
-    console.log('Closest .edit-icon:', e.target.closest('.edit-icon'));
-    if(e.target.closest('.edit-icon')) {
-        e.stopPropagation();
-        editSubject(e.target.closest('.edit-icon'));
-    }
-});
-
-document.getElementById('removeAllButton').addEventListener('click', removeAllSubjects);
-
-
-</script>
+  <div id="toast-container">
+    <!-- Individual Toast -->
+    <div id="save-toast" class="toast hide">
+      <div class="toast-body">
+        Data saved successfully.
+      </div>
+    </div>
+  </div>
 
 </body>
 

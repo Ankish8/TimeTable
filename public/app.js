@@ -1,3 +1,5 @@
+
+
 function compileTimetableData() {
     const data = {
         week: document.querySelector('.nav-link.active').innerText,
@@ -152,6 +154,11 @@ function saveTimetableData(data) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        const toast = document.getElementById('save-toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000); // The toast will disappear after 3 seconds
         // Handle success
         // Update UI to reflect that data was saved successfully
     })
@@ -194,3 +201,86 @@ function loadTimetableData(week, batch) {
       // For instance, reset the cursor to 'default' or hide the spinner
     });
 }
+
+window.onload = function () {
+    // Fetch subject data from the server
+    fetch('http://localhost:3000/api/subjects')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Store fetched data in subjectData variable
+        subjectData = data;
+        // Populate select elements
+        const selects = document.querySelectorAll('.subject-select');
+        for (const select of selects) {
+          for (const subject in data) {
+            const option = document.createElement('option');
+            option.text = subject;
+            option.value = subject;
+            select.add(option);
+          }
+        }
+        
+        // After subjects have been loaded, load the timetable data
+        // Get the initial values for week and batch and pass to loadTimetableData function
+        const initialWeek = document.querySelector('.nav-link.active').innerText; // adjust if necessary
+        const initialBatch = document.getElementById('batchSelect').value; // adjust if necessary
+        loadTimetableData(initialWeek, initialBatch); // calling the function to load timetable data
+      })
+      .catch(error => {
+        console.error('Error fetching the subjects:', error);
+      });
+  
+    // Listen for changes on the batch select dropdown
+    document.getElementById('batchSelect').addEventListener('change', function() {
+      // Fetch timetable data from the server for the selected week and batch
+      const selectedWeek = document.querySelector('.nav-link.active').innerText;
+      const selectedBatch = this.value;
+      
+      loadTimetableData(selectedWeek, selectedBatch); // replaced previous fetch with function call
+    });
+  };
+
+let subjectData = {}; // This will hold the fetched subject data
+
+
+
+
+document.getElementById('saveButton').addEventListener('click', function() {
+    const compiledData = compileTimetableData();
+    saveTimetableData(compiledData);
+});
+
+
+document.body.addEventListener('click', function(e) {
+    console.log('Clicked element:', e.target);
+    console.log('Closest .edit-icon:', e.target.closest('.edit-icon'));
+    if(e.target.closest('.edit-icon')) {
+        e.stopPropagation();
+        editSubject(e.target.closest('.edit-icon'));
+    }
+});
+
+document.getElementById('removeAllButton').addEventListener('click', removeAllSubjects);
+
+// Your existing JavaScript code...
+
+// Locate your event listeners, usually inside or after window.onload function
+// Then add the following:
+
+// Listen for changes in week tabs
+
+/* document.querySelectorAll('.nav-link').forEach((tab) => {
+    tab.addEventListener('click', function() {
+      // Fetch timetable data for the selected week and batch
+      const selectedWeek = this.innerText;
+      const selectedBatch = document.getElementById('batchSelect').value;
+  
+      loadTimetableData(selectedWeek, selectedBatch); // function call to load timetable data
+    });
+  }); */
+  
