@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Define schema for each time slot
 const SlotSchema = new Schema({
     time: {
         type: String,
@@ -15,18 +16,20 @@ const SlotSchema = new Schema({
         type: String,
         trim: true
     }
-}, {_id: false}); // _id: false means this sub-document won't have a unique ID
+}, {_id: false}); // Preventing MongoDB from creating an _id field for sub-document
 
+// Define schema for each day with an array of slots
 const DaySchema = new Schema({
     day: {
         type: String,
         required: true,
         trim: true,
-        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] // Ensuring day field has one of these values
+        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] // Restricting values to weekdays
     },
     slots: [SlotSchema]
-}, {_id: false});
+}, {_id: false}); // Preventing MongoDB from creating an _id field for sub-document
 
+// Define main timetable schema with an array of days
 const TimetableSchema = new Schema({
     week: {
         type: String,
@@ -40,7 +43,8 @@ const TimetableSchema = new Schema({
     },
     days: [DaySchema]
 }, {
-    timestamps: true // This will add `createdAt` and `updatedAt` fields
+    timestamps: true // Automatically generating createdAt and updatedAt fields
 });
 
+// Exporting the model based on the schema to be used in other parts of the application
 module.exports = mongoose.model('Timetable', TimetableSchema);
