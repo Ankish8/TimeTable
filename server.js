@@ -21,6 +21,19 @@ const subjectData = {
 app.use(express.json());
 app.use('/api', apiRouter); // This line mounts your API router on the '/api' path
 
+/* app.post('/remove-all', (req, res) => {
+  // You need to replace the collection name 'yourCollection' with the actual name of your collection.
+  db.collection('timetable').deleteMany({}, (err, result) => {
+      if (err) {
+          console.error('Error removing data:', err);
+          res.status(500).json({ success: false, message: 'Internal Sessrver Error', error: err.message });
+          return;
+      }
+      res.json({ success: true });
+  });
+}); */
+
+
  
 // Serve HTML file at root
 app.get('/', (req, res) => {

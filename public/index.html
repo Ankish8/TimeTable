@@ -65,6 +65,9 @@
 
     <table class="table table-bordered">
       <button id="saveButton" class="btn btn-primary">Save</button>
+      <button onclick="removeAllSubjects()">Remove All</button>
+
+
       <thead>
         <tr>
           <th scope="col">Day/Time</th>
@@ -484,6 +487,8 @@ document.getElementById('saveButton').addEventListener('click', function() {
     saveTimetableData(compiledData);
 });
 
+
+
 function compileTimetableData() {
     const data = {
         week: document.querySelector('.nav-link.active').innerText,
@@ -544,6 +549,35 @@ function setSubject(element) {
   editIcon.classList.remove('hidden'); 
   parentCell.classList.add('editable'); // Add this line
   // saveSubject('someCellId', selectedSubject);
+}
+function removeAllSubjects() {
+    const confirmation = confirm('Are you sure you want to remove all data? This cannot be undone.');
+    if (!confirmation) return;
+
+    // Select all cells with the 'editable-cell' class
+    const allCells = document.querySelectorAll('.editable-cell');
+
+    // Iterate over all cells and reset them
+    allCells.forEach(cell => {
+        const selectElement = cell.querySelector('select');
+        const displayDiv = cell.querySelector('div');
+        const editIcon = cell.querySelector('.edit-icon');
+
+        // If any element is not found, log an error and return
+        if (!selectElement || !displayDiv || !editIcon) {
+            console.error('Select element, display div, or edit icon not found in cell:', cell);
+            return;
+        }
+
+        editIcon.classList.add('hidden'); // Hide the edit icon
+        displayDiv.remove(); // Remove the displayed subject
+        selectElement.style.display = 'inline-block'; // Show the select element again
+        selectElement.value = ""; // Reset the value of the select to the default state
+    });
+
+    // After all cells are cleared, compile the data and save it
+    const compiledData = compileTimetableData();
+    saveTimetableData(compiledData);
 }
 
 
