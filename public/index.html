@@ -28,6 +28,7 @@
 
 
 <!-- Week Tabs -->
+<div class="nav-container">
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link active" href="#week1" data-toggle="tab">Week 1</a>
@@ -35,8 +36,13 @@
     <li class="nav-item">
       <a class="nav-link" href="#week2" data-toggle="tab">Week 2</a>
     </li>
-    <!-- Add more weeks as needed -->
   </ul>
+  <div class="button-container">
+    <button id="removeAllButton" class="btn custom-button remove-button">Remove All</button>
+    <button id="saveButton" class="btn custom-button save-button">Save</button>
+  </div>
+</div>
+
 
   <!-- Tab Content -->
   <div class="tab-content">
@@ -56,6 +62,7 @@
     <!-- End Week 2 Tab -->
     <!-- Add similar blocks for other weeks -->
   </div>
+  
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -63,10 +70,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 
-    <table class="table table-bordered">
-      <button id="saveButton" class="btn btn-primary">Save</button>
-      <button onclick="removeAllSubjects()">Remove All</button>
 
+    <table class="table table-bordered">
+<!--       <button id="saveButton" class="btn btn-primary">Save</button>
+      <button onclick="removeAllSubjects()">Remove All</button>
+ -->
 
       <thead>
         <tr>
@@ -672,6 +680,7 @@ function loadTimetableData(week, batch) {
       // For instance, reset the cursor to 'default' or hide the spinner
     });
 }
+document.getElementById('removeAllButton').addEventListener('click', removeAllSubjects);
 
 
 </script>

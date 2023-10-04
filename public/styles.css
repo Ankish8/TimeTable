@@ -21,6 +21,59 @@
 .hidden {
     display: none !important;
   }
-  
-  
 
+  .button-container {
+    text-align: right; /* Aligns buttons to the right */
+    margin-bottom: 20px; /* Adds some space below the button container */
+  }
+  
+  .custom-button {
+    padding: 10px 20px; /* Adds some padding inside the button */
+    margin: 0 5px; /* Adds some space around each button */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Adds rounded corners */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+  }
+  
+  .remove-button {
+    background-color: #d9534f; /* Red background color */
+    color: #fff; /* White text color */
+  }
+  
+  .save-button {
+    background-color: #0275d8; /* Blue background color */
+    color: #fff; /* White text color */
+  }
+  
+  /* Hover effect for buttons */
+  .custom-button:hover {
+    background-color: #5bc0de; /* Light blue background color on hover */
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between; /* or use "space-around" or "space-evenly" for different spacing */
+    align-items: center;
+    background-color: #f8f9fa; /* Adjust this to match your tab bar background color */
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    border-bottom: 1px solid #dee2e6; /* Adjust border color as needed */
+  }
+  
+  .nav-tabs {
+    border-bottom: none; /* Removes the underline from the tab bar */
+  }
+  
+  /* Additional styling for nav-links if needed */
+  .nav-link {
+    border: none;
+    border-radius: 0;
+    color: hwb(210 29% 66%); /* Adjust text color as needed */
+  }
+  
+  .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #007bff; /* Bottom border for active tab; adjust color as needed */
+    color: #007bff; /* Adjust active tab text color as needed */
+  }
+  
