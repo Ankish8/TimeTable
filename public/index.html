@@ -18,12 +18,9 @@
 
   <title>Timetable App</title>
 </head>
-
 <body>
-
   <div class="container mt-5">
   <h1 class="text-center mb-4">TIME TABLE - Jul-Dec 2023</h1>
-   
   <!-- Batch Selection Dropdown -->
 <div class="mb-4">
   <label for="batchSelect" class="form-label">Select Batch:</label>
@@ -33,7 +30,6 @@
     <!-- Add more batches as needed -->
   </select>
 </div>
-
 <div class="nav-container">
   <div class="week-info">
     
@@ -48,11 +44,11 @@
         <a class="nav-link" id="week2-tab" href="#week2" data-toggle="tab">Week 2</a>
       </li>
       <li class="nav-item ml-auto">
+        <button class="btn custom-button downloadCSVButton">Download CSV</button>
         <button id="downloadButton" class="btn custom-button downloadButton">
           <i class="fas fa-download"></i>
         </button>
         <button id="removeAllButton" class="btn custom-button remove-button text-button">Clear</button>
-        
         
         <button id="saveButton" class="btn custom-button save-button">
           <i class="fas fa-save"></i> Save
@@ -84,7 +80,7 @@
 
 
 
-    <table class="table">
+    <table class="table table-bordered">
 
 
       <thead>

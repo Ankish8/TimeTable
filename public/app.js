@@ -5,7 +5,7 @@ function compileTimetableData() {
         week: document.querySelector('.nav-link.active').innerText,
         batch: document.getElementById('batchSelect').value,
         days: []
-    };
+    }; 
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     days.forEach(day => {
         const dayData = { day: day, slots: [] };
@@ -347,23 +347,107 @@ document.querySelectorAll('.nav-link').forEach((tab) => {
       });
     });
   });
+  window.jsPDF = window.jspdf.jsPDF;
   
   async function downloadPDF() {
-    const table = document.querySelector('.table'); // Select your table
-  
+    const table = document.querySelector('.table');
+    const batchInfo = "Batch: 2022"; // Replace with dynamic batch info
+    const weekInfo = "Week: 2"; // Replace with dynamic week info
+    const header = "My Awesome Timetable"; // Replace with dynamic header
+    
     // Convert table to canvas using html2canvas
     const canvas = await html2canvas(table);
-  
+    
+    const imgData = canvas.toDataURL('image/png');
+    
+    // Calculate dimensions
+    const imgWidth = 297;
+    const pageHeight = 210;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+    let heightLeft = imgHeight;
+    
     // Initialize jsPDF
     const pdf = new jsPDF('l', 'mm', 'a4');
+    
+    let position = 40; // set position for the table canvas image
   
-    // Add image to PDF
-    pdf.addImage(canvas, 'JPEG', 10, 10);
+    // Adding Header and batch, week info before adding the table image
+    pdf.setFontSize(18);
+    pdf.text(header, 10, 10); // (text, x, y)
+    pdf.setFontSize(12);
+    pdf.text(batchInfo, 10, 20);
+    pdf.text(weekInfo, 10, 30);
+    
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+    
+    // Add extra pages if needed
+    while (heightLeft >= 0) {
+      position = heightLeft - imgHeight + 40; // reset the position for extra pages
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
   
     // Save PDF
     pdf.save('table.pdf');
   }
   
-  // Add the click event to the download button
+  // Add event listener to the download button
   document.querySelector('.downloadButton').addEventListener('click', downloadPDF);
+  
+  function downloadCSV() {
+    let csvContent = "Time"; // Start with "Time" in the first cell
+
+    const table = document.querySelector(".table");
+    const headerRow = table.querySelector("tr");
+    
+    // Process header row
+    headerRow.querySelectorAll("th").forEach((cell, index) => {
+        if (index !== 0) { // Skip the first header cell (time)
+            csvContent += `,${cell.textContent.trim()} (Course Name),${cell.textContent.trim()} (Faculty Name)`;
+        }
+    });
+
+    // Add line break after the header row
+    csvContent += "\r\n";
+
+    // Now process the rest of the rows
+    const rows = table.querySelectorAll("tr");
+    rows.forEach((row, rowIndex) => {
+        if (rowIndex !== 0) {
+            let rowData = [];
+            row.querySelectorAll("td, th").forEach((cell, cellIndex) => {
+                if (cellIndex === 0) {
+                    rowData.push(cell.textContent.trim());
+                } else {
+                    const subjectSelected = cell.classList.contains('subject-selected');
+                    if (subjectSelected) {
+                        const displayDiv = cell.querySelector('div');
+                        const faculty = displayDiv.querySelector('strong').textContent.trim();
+                        const subject = displayDiv.querySelector('.course-name').textContent.trim();
+                        rowData.push(subject);
+                        rowData.push(faculty);
+                    } else {
+                        rowData.push("N/A", "N/A");
+                    }
+                }
+            });
+            csvContent += rowData.join(",") + "\r\n";
+        }
+    });
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.setAttribute("download", "timetable.csv");
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+  // Add the click event to the download CSV button
+  document.querySelector('.downloadCSVButton').addEventListener('click', downloadCSV);
   

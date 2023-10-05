@@ -5,6 +5,8 @@ body, p {
   text-align: start;
   letter-spacing: normal;
   margin: 0 20% 0;
+  margin: auto 80px;
+
 }
 .week-info {
   display: flex;
@@ -262,3 +264,10 @@ body, p {
   }
 }
 
+.downloadCSVButton {
+    background-color: transparent;
+    color: #313131;
+    border: none;
+    /* ...other styles here... */
+  }
+  
