@@ -78,7 +78,7 @@ function populateTimetable(data) {
                     // hide the select box and display the subject and faculty in the required format
                     select.style.display = 'none';
                     const displayDiv = document.createElement('div');
-                    displayDiv.innerHTML = '<strong>' + slot.faculty + '</strong><br>' + slot.subject;
+                    displayDiv.innerHTML = '<strong>' + slot.faculty + '</strong><br><span class="course-name">' + slot.subject + '</span>';
                     cell.appendChild(displayDiv);
                     cell.classList.add('subject-selected');
 
@@ -102,7 +102,7 @@ function setSubject(element) {
     element.style.display = 'none'; 
     const parentCell = element.parentNode;
     const displayDiv = document.createElement('div');
-    displayDiv.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br>' + selectedSubject;
+    displayDiv.innerHTML = '<strong>' + subjectData[selectedSubject] + '</strong><br><span class="course-name">' + selectedSubject + '</span>';
     parentCell.appendChild(displayDiv); 
     parentCell.classList.add('subject-selected');
     const editIcon = parentCell.querySelector('.edit-icon'); 
@@ -347,4 +347,23 @@ document.querySelectorAll('.nav-link').forEach((tab) => {
       });
     });
   });
+  
+  async function downloadPDF() {
+    const table = document.querySelector('.table'); // Select your table
+  
+    // Convert table to canvas using html2canvas
+    const canvas = await html2canvas(table);
+  
+    // Initialize jsPDF
+    const pdf = new jsPDF('l', 'mm', 'a4');
+  
+    // Add image to PDF
+    pdf.addImage(canvas, 'JPEG', 10, 10);
+  
+    // Save PDF
+    pdf.save('table.pdf');
+  }
+  
+  // Add the click event to the download button
+  document.querySelector('.downloadButton').addEventListener('click', downloadPDF);
   

@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/all.js"></script>
-  <script src="app.js" defer></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script src="app.js" defer></script>
+<script src="/all.js"></script>
 
   <link rel="stylesheet" href="styles.css">
 
@@ -46,7 +48,12 @@
         <a class="nav-link" id="week2-tab" href="#week2" data-toggle="tab">Week 2</a>
       </li>
       <li class="nav-item ml-auto">
+        <button id="downloadButton" class="btn custom-button downloadButton">
+          <i class="fas fa-download"></i>
+        </button>
         <button id="removeAllButton" class="btn custom-button remove-button text-button">Clear</button>
+        
+        
         <button id="saveButton" class="btn custom-button save-button">
           <i class="fas fa-save"></i> Save
         </button>
@@ -77,19 +84,19 @@
 
 
 
-    <table class="table table-bordered">
+    <table class="table">
 
 
       <thead>
         <tr>
           <th scope="col">Day/Time</th>
-          <th scope="col">9:45-10:35</th>
-          <th scope="col">10:35-11:25</th>
-          <th scope="col">11:25-12:15</th>
-          <th scope="col">12:15-1:05</th>
+          <th scope="col">9:45 - 10:35</th>
+          <th scope="col">10:35 - 11:25</th>
+          <th scope="col">11:25 - 12:15</th>
+          <th scope="col">12:15 - 1:05</th>
           <th scope="col"></th>
-          <th scope="col">1:35-2:25</th>
-          <th scope="col">2:25-3:15</th>
+          <th scope="col">1:35 - 2:25</th>
+          <th scope="col">2:25 - 3:15</th>
         </tr>
         
       </thead>
